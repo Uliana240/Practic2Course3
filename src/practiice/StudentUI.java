@@ -1,35 +1,36 @@
 package practiice;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 
 
 public class StudentUI {
 
 
   Student[] students = {
-      new Student("��������", "����", "��������",
+      new Student("Belaninova", "Ulana", "Illivna",
           LocalDate.of(2000, 5, 12), "Kyiv", "+380501234567",
           Faculty.PHYSICS, Course.SECOND),
-      new Student("��������", "�����", "���㳿���",
+      new Student("Petrenko", "Oleksandr", "Ivanovych",
           LocalDate.of(2001, 8, 23), "Lviv", "+380671234567",
           Faculty.CHEMISTRY, Course.THIRD),
-      new Student("���������", "�������", "��������",
+      new Student("Shevchenko", "Kateryna", "Mykhailivna",
           LocalDate.of(1999, 11, 30), "Odessa", "+380931234567",
           Faculty.PHYSICS, Course.THIRD),
 
-      new Student("���������", "�����", "�����������",
+      new Student("Kovalenko", "Dmytro", "Serhiiovych",
           LocalDate.of(2002, 2, 15), "Kyiv", "+380501234568",
           Faculty.COMPUTER_SCIENCE, Course.FIRST),
-      new Student("��������", "����", "�������",
+      new Student("Bondarenko", "Olena", "Andriivna",
           LocalDate.of(2000, 9, 1), "Lviv", "+380671234569",
           Faculty.MATHEMATICS, Course.SECOND),
-      new Student("����������", "���������", "��������",
+      new Student("Melnyk", "Andrii", "Volodymyrovych",
           LocalDate.of(1998, 12, 20), "Odessa", "+380931234570",
           Faculty.CHEMISTRY, Course.FIVE),
-      new Student("������", "����", "���������",
+      new Student("Tkachenko", "Iryna", "Oleksandrivna",
           LocalDate.of(2001, 7, 12), "Kyiv", "+380501234571",
           Faculty.PHYSICS, Course.FIRST),
-      new Student("�������", "����", "³�������",
+      new Student("Kravchenko", "Mykola", "Pavlovych",
           LocalDate.of(2003, 4, 30), "Lviv", "+380671234572",
           Faculty.COMPUTER_SCIENCE, Course.FIRST),
       new Student("�������", "�����", "�������������",
@@ -80,17 +81,27 @@ public class StudentUI {
   };
   StudentManager studentManager = new StudentManager(students);
   public void printStudentsByFaculty(Faculty faculty) {
+    System.out.println("students by faculty:");
     Student[] students1 =studentManager.getStudentsByFaculty(faculty);
     for (Student student : students1) {
       System.out.println(student);
     }
   }
   public void printStudentsByCourseAndFaculty() {
+    System.out.println("Studens sort on course and facuulty:");
     Student[][] students1 = studentManager.getStudentsByFacultyAndCourse();
-    for (Student[] students2 : students1) {
+      for (Student[] students2 : students1) {
       for (Student student : students2) {
         System.out.println(student);
       }
     }
   }
-}
+    public void printStudentsByBornAfter(int year) {
+      System.out.println("Student born after" + " " + year);
+      Student[] students1 =studentManager.getStudentsByBornAfter(year);
+      for (Student student : students1) {
+        System.out.println(student);
+      }
+    }
+  }
+

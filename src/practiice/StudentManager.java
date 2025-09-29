@@ -11,6 +11,7 @@ public class StudentManager {
     students = new Student[capacity];
     count = 0;
   }
+
   public StudentManager(Student[] students) {
     this.students = students;
   }
@@ -23,10 +24,10 @@ public class StudentManager {
     }
   }
 
-    public Student [] getStudentsByFaculty(Faculty faculty) {
-    Student [] studentsByFaculty = new Student [students.length];
-  int index  = 0;
-    for(Student student : students) {
+  public Student[] getStudentsByFaculty(Faculty faculty) {
+    Student[] studentsByFaculty = new Student[students.length];
+    int index = 0;
+    for (Student student : students) {
       if (faculty.equals(student.getFaculty())) {
         studentsByFaculty[index] = student;
         index++;
@@ -35,48 +36,42 @@ public class StudentManager {
     return Arrays.copyOf(studentsByFaculty, index);
   }
 
- public Student[][] getStudentsByFacultyAndCourse(){
+  public Student[][] getStudentsByFacultyAndCourse() {
     Faculty[] faculties = Faculty.values();
     Course[] courses = Course.values();
-    Student[][] studentsByFacultyAndCourse = new Student[faculties.length*courses.length][];
+    Student[][] studentsByFacultyAndCourse = new Student[faculties.length * courses.length][];
 
- int index  = 0;
-for(Faculty faculty : faculties) {
-  for(Course course : courses) {
-    Student [] temp = new Student[students.length];
-    int index1  = 0;
-    for(Student student : students) {
-      if (faculty.equals(student.getFaculty()) && course.equals(student.getCourse())) {
-        temp[index1] = student;
+    int index = 0;
+    for (Faculty faculty : faculties) {
+      for (Course course : courses) {
+        Student[] temp = new Student[students.length];
+        int index1 = 0;
+        for (Student student : students) {
+          if (faculty.equals(student.getFaculty()) && course.equals(student.getCourse())) {
+            temp[index1] = student;
 
-        index1++;
+            index1++;
+          }
+        }
+        studentsByFacultyAndCourse[index] = Arrays.copyOf(temp, index1);
+        index++;
       }
     }
-    studentsByFacultyAndCourse[index] = temp;
-    index++;
+    return Arrays.copyOf(studentsByFacultyAndCourse, index);
   }
-}
-return Arrays.copyOf(studentsByFacultyAndCourse, studentsByFacultyAndCourse.length);
- }
- public Student [] getStudentsByCourse(Course course) {
-   Student [] studentsByFaculty = new Student [students.length];
-   int index  = 0;
-   for(Student student : students) {
-     if (course.equals(student.getFaculty())) {
-       studentsByFaculty[index] = student;
-       index++;
-     }
-   }
-   return Arrays.copyOf(studentsByFaculty, index);
- }
-  // 3. ��������, �� ���������� ���� �������� ����
-  public void printStudentsBornAfter(int year) {
-    System.out.println("Faculty students born after " + year + ":");
-    for (int i = 0; i < count; i++) {
-      if (students[i].getDateOfBirth().getYear() > year) {
-        System.out.println(students[i]);
+
+  public Student[] getStudentsByBornAfter(int year) {
+    Student[] studentsByBornAfter = new Student[students.length];
+    int index = 0;
+    year = 2001;
+    for (Student student : students) {
+      if (student.getDateOfBirth().getYear() > year) {
+        studentsByBornAfter[index] = student;
+        index++;
       }
     }
-    System.out.println();
+    return Arrays.copyOf(studentsByBornAfter, index);
   }
+
+
 }
